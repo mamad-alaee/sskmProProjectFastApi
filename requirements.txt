@@ -3,3 +3,4 @@ uvicorn
 python-multipart
 email-validator
 mongoengine
+python-jose[cryptography]

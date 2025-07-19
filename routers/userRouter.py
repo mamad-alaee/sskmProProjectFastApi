@@ -1,26 +1,22 @@
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,Header
 from validators.userValidator import UserValidator,getUserDataFromForm
-from controllers.userController import save_user
+from controllers.userController import decode_access_token,save_user,edit_user,get_all_users,delete_user_with_id
 userRouter = APIRouter()
 
 
 @userRouter.get("/users")
-async def get_users():
-    return {"job":"ok","message":"users"}
+async def get_users(page:int=1,limit:int=4,jwt_token:str=Header(...)):
+    print(decode_access_token(jwt_token))
+    return get_all_users(page,limit)
 
 @userRouter.post("/users")
 async def create_user(userData:UserValidator = Depends(getUserDataFromForm)):
-    status , response = save_user(userData)
-    if status:
-        return {"job":"ok","message":f"user created successfully"}
-    else:
-        return {"job":"error","message":f"user creation failed {response}"}
+    return save_user(userData)
     
 
 @userRouter.put("/users/{id}")
-async def update_user(id:int):
-    return {"job":"ok","message":f"user with id {id} updated"}
-
+async def update_user(id:str,userData:UserValidator = Depends(getUserDataFromForm)):
+    return edit_user(id,userData)
 @userRouter.delete("/users/{id}")
-async def delete_user(id:int):
-    return {"job":"ok","message":f"user with id {id} deleted"}
+async def delete_user(id:str):
+    return delete_user_with_id(id)
