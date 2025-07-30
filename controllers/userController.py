@@ -1,4 +1,5 @@
 from models.userModel import User
+from models.roleModel import Role
 from fastapi import HTTPException
 from bson.objectid import ObjectId
 from datetime import datetime, timedelta
@@ -7,6 +8,8 @@ from jose import jwt
 def save_user(userData):
     try:
         userData = dict(userData)
+        userData["role"] = Role.objects(name="Buyer").first()
+        print
         if not check_user_exists(userData['email']):
             created_user = User(**userData).save()
     except Exception as e:
@@ -20,6 +23,7 @@ def get_all_users(page,limit):
         userList = list(User.objects().skip(skip).limit(limit).as_pymongo())
         for user in userList:
             user['_id'] = str(user['_id'])
+            user["role"] = str(user["role"])
         return {"job":"ok","data":userList}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -72,6 +76,7 @@ def create_access_token(founded_user):
             "_id": str(founded_user['_id']),
             "full_name" : founded_user['full_name'],
             "email" : founded_user['email'],
+            "role_name" : list(Role.objects(id=founded_user['role']).as_pymongo())[0]["name"]
         }
         access_token = jwt.encode(userData,key="mamadHasanQoli@9994444",algorithm="HS256")
         return {"job":"ok","access_token":access_token}

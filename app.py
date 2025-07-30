@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from initiators.db_initiator import init_db
 from initiators.setRoutes import setRoutes
-
+from initiators.inti_data import init_base_data
 
 originalApp = FastAPI(
     description="this is sskm project",
@@ -10,6 +10,7 @@ originalApp = FastAPI(
 )
 
 init_db()
+init_base_data()
 setRoutes(originalApp)
 
 
