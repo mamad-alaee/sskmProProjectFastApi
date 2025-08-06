@@ -4,7 +4,7 @@ from controllers.userController import decode_access_token,save_user,edit_user,g
 from controllers.authController import is_admin_or_higher
 userRouter = APIRouter()
 
-
+@userRouter.get("/user")
 @userRouter.get("/users")
 async def get_users(page:int=1,limit:int=4,jwt_token:str=Header(...)):
     user_data = is_admin_or_higher(jwt_token)
