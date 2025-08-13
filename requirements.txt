@@ -5,3 +5,4 @@ email-validator
 mongoengine
 python-jose[cryptography]
 loguru
+python-dotenv
