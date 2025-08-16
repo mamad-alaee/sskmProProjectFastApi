@@ -6,3 +6,4 @@ mongoengine
 python-jose[cryptography]
 loguru
 python-dotenv
+apscheduler

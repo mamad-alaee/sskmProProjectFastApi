@@ -1,0 +1,5 @@
+2025-08-02 22:03:55.559 | ERROR    | app:log_exception:24 - Exception occurred: This is an error
+2025-08-02 22:08:59.347 | ERROR    | app:log_exception:24 - Exception occurred: user with this id => 688a6dc5cf7c10a824cb5a85 send get request to this path /error and the name is hasanQoli 
+2025-08-02 22:16:55.970 | ERROR    | initiators.init_logger:log_exception:14 - Exception occurred: user with this id => 688a6dc5cf7c10a824cb5a85 send get request to this path /error and the name is hasanQoli 
+2025-08-02 22:17:05.679 | ERROR    | initiators.init_logger:log_exception:15 - Exception occurred: user with this id => 688a6dc5cf7c10a824cb5a85 send get request to this path /error and the name is hasanQoli 
+2025-08-02 22:17:23.084 | ERROR    | initiators.init_logger:log_exception:15 - Exception occurred: user with this id => 688a6dc5cf7c10a824cb5a85 send get request to this path /error and the name is hasanQoli2 
