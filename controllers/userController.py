@@ -8,6 +8,7 @@ from initiators.init_env import jwt_key
 import shutil 
 from os import getcwd,mkdir
 from os.path import isdir
+import requests
 
 
 def save_user(userData):
@@ -129,3 +130,7 @@ def save_profile_pic(img):
             return {"job":"error","message":"Invalid image format or size"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+def send_sms(phone_number):
+    pass

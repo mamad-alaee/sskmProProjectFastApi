@@ -1,6 +1,6 @@
 from fastapi import APIRouter,Depends,Header,UploadFile,File
 from validators.userValidator import UserValidator,getUserDataFromForm
-from controllers.userController import save_profile_pic,decode_access_token,save_user,edit_user,get_all_users,delete_user_with_id
+from controllers.userController import send_sms,save_profile_pic,decode_access_token,save_user,edit_user,get_all_users,delete_user_with_id
 from controllers.authController import is_admin_or_higher
 userRouter = APIRouter()
 
@@ -26,3 +26,8 @@ async def delete_user(id:str):
 @userRouter.post("/change_profile")
 def change_profile(img:UploadFile = File(...)):
     return save_profile_pic(img)
+
+
+@userRouter.post("/send-sms-code/{phone_number}")
+async def send_sms_code(phone_number:str):
+    return send_sms(phone_number)

@@ -7,3 +7,6 @@ python-jose[cryptography]
 loguru
 python-dotenv
 apscheduler
+requests
+httpx
+pytest
